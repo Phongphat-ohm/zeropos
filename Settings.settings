@@ -1,0 +1,39 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="zeropos" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="database_file" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:/.PHONGPHAT/visual_studio/zeropos/src/database/main_database.db</Value>
+    </Setting>
+    <Setting Name="shop_name" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ZEROPOS'SHOP</Value>
+    </Setting>
+    <Setting Name="shop_address" Type="System.String" Scope="User">
+      <Value Profile="(Default)">11/13 บ้านหนองงิ้ว นางรอง นางรอง บุรีรัมย์ 31110</Value>
+    </Setting>
+    <Setting Name="tax_id" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1234567891234</Value>
+    </Setting>
+    <Setting Name="bill_footer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">*เราได้บันทึกข้อมูลของคุณไว้แล้ว*ขอบคุณที่ใช้บริการ</Value>
+    </Setting>
+    <Setting Name="printer_name" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="auto_bill_print" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="vat" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="shop_phone" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="bill_prefix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ZR</Value>
+    </Setting>
+    <Setting Name="logo_path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\.PHONGPHAT\visual_studio\zeropos\src\logo.png</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
