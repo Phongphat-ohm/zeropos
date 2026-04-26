@@ -68,5 +68,11 @@ namespace zeropos
             PointOfSale pos = new PointOfSale();
             pos.ShowDialog();
         }
+
+        private void จดการสมาชกToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFormInPanel(new MemberManagement());
+            txt_status_label.Text = "จัดการสมาชิก";
+        }
     }
 }

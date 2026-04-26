@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             pictureBox1 = new PictureBox();
-            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -43,22 +42,11 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // button1
-            // 
-            button1.Location = new Point(12, 339);
-            button1.Name = "button1";
-            button1.Size = new Size(486, 154);
-            button1.TabIndex = 1;
-            button1.Text = "Print";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 871);
-            Controls.Add(button1);
             Controls.Add(pictureBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Home";
@@ -70,6 +58,5 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private Button button1;
     }
 }

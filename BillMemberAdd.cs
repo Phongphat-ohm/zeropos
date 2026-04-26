@@ -76,7 +76,7 @@ namespace zeropos
                 conn.Open();
 
                 string query = @"
-                    SELECT id, member_code, name, phone
+                    SELECT id, member_code, name, phone,status
                     FROM members
                     WHERE member_code = @search
                        OR phone = @search
@@ -97,10 +97,21 @@ namespace zeropos
                             return;
                         }
 
+                        string status = reader["status"].ToString();
+
+                        if(string.IsNullOrEmpty(status) || status == "0")
+                        {
+                            MessageBox.Show("สมาชิกถูกระงับการใช้งาน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            inp_search.Clear();
+                            inp_search.Focus();
+                            return;
+                        }
+
                         int member_id = Convert.ToInt32(reader["id"]);
                         string code = reader["member_code"].ToString();
                         string name = reader["name"].ToString();
                         string phone = reader["phone"].ToString();
+
 
                         txt_member_id.Text = member_id.ToString();
                         txt_member_code.Text = code;

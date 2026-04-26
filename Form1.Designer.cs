@@ -184,15 +184,16 @@
             // 
             จดการผใชToolStripMenuItem.Image = Properties.Resources.user;
             จดการผใชToolStripMenuItem.Name = "จดการผใชToolStripMenuItem";
-            จดการผใชToolStripMenuItem.Size = new Size(156, 22);
+            จดการผใชToolStripMenuItem.Size = new Size(180, 22);
             จดการผใชToolStripMenuItem.Text = "จัดการผู้ใช้";
             // 
             // จดการสมาชกToolStripMenuItem
             // 
             จดการสมาชกToolStripMenuItem.Image = Properties.Resources.star;
             จดการสมาชกToolStripMenuItem.Name = "จดการสมาชกToolStripMenuItem";
-            จดการสมาชกToolStripMenuItem.Size = new Size(156, 22);
+            จดการสมาชกToolStripMenuItem.Size = new Size(180, 22);
             จดการสมาชกToolStripMenuItem.Text = "จัดการสมาชิก";
+            จดการสมาชกToolStripMenuItem.Click += จดการสมาชกToolStripMenuItem_Click;
             // 
             // toolStripSeparator3
             // 
