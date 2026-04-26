@@ -18,7 +18,7 @@
       <Value Profile="(Default)">*เราได้บันทึกข้อมูลของคุณไว้แล้ว*ขอบคุณที่ใช้บริการ</Value>
     </Setting>
     <Setting Name="printer_name" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">POS58</Value>
     </Setting>
     <Setting Name="auto_bill_print" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

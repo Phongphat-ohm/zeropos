@@ -74,5 +74,11 @@ namespace zeropos
             OpenFormInPanel(new MemberManagement());
             txt_status_label.Text = "จัดการสมาชิก";
         }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            OpenFormInPanel(new SettingsForm());
+            txt_status_label.Text = "การตั้งค่า";
+        }
     }
 }

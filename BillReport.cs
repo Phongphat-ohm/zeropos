@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
@@ -18,6 +19,7 @@ namespace zeropos
         private string taxId;
         private string logoPath;
         private string footerText;
+        private string shopPhone;
 
         public BillReport()
         {
@@ -28,9 +30,10 @@ namespace zeropos
             taxId = settings.tax_id ?? "";
             logoPath = settings.logo_path ?? "";
             footerText = settings.bill_footer ?? "ขอบคุณที่ใช้บริการ";
+            shopPhone = settings.shop_phone ?? "";
         }
 
-        public void PrintBill(long orderId)
+        public void PrintBill(long orderId, bool showPreview = false)
         {
             BillHeader bill = GetBillHeader(orderId);
 
@@ -56,10 +59,41 @@ namespace zeropos
 
             PrintPreviewDialog preview = new PrintPreviewDialog();
             preview.Document = printDoc;
-            //preview.ShowDialog();
 
-            // ถ้าต้องการพิมพ์จริงทันที ใช้:
-             printDoc.Print();
+            string savedPrinter = new Settings().printer_name;
+
+            bool printerExists = false;
+
+            foreach (string printer in PrinterSettings.InstalledPrinters)
+            {
+                if (printer == savedPrinter)
+                {
+                    printerExists = true;
+                    break;
+                }
+            }
+
+            // ✅ ถ้ามี → ใช้ตาม settings
+            if (printerExists)
+            {
+                printDoc.PrinterSettings.PrinterName = savedPrinter;
+            }
+            else
+            {
+                printDoc.PrinterSettings.PrinterName = new PrinterSettings().PrinterName;
+            }
+
+
+            // 🔽 ส่วน print
+            if (showPreview)
+            {
+                preview.Document = printDoc; // สำคัญ!
+                preview.ShowDialog();
+            }
+            else
+            {
+                printDoc.Print();
+            }
         }
 
         private BillHeader GetBillHeader(long orderId)
@@ -184,23 +218,30 @@ namespace zeropos
             int y = 5;
             int lineHeight = 18;
 
-            DrawTextAutoHeight(g, "ใบเสร็จรับเงิน", fontTotal, left, ref y, ContentWidth, center);
+            DrawTextAutoHeight(g, "ใบเสร็จรับเงิน", fontTotal, left, ref y, PaperWidth, center);
             y += 5;
 
             DrawLogo(g, ref y, left);
 
-            DrawTextAutoHeight(g, shopName, fontTitle, left, ref y, ContentWidth, center);
+            DrawTextAutoHeight(g, shopName, fontTitle, left, ref y, PaperWidth, center);
 
             if (!string.IsNullOrWhiteSpace(shopAddress))
             {
-                DrawTextAutoHeight(g, shopAddress, fontSmall, left, ref y, ContentWidth, center);
+                DrawTextAutoHeight(g, shopAddress, fontSmall, left, ref y, PaperWidth, center);
             }
 
             if (!string.IsNullOrWhiteSpace(taxId))
             {
-                DrawTextAutoHeight(g, "เลขผู้เสียภาษี: " + taxId, fontSmall, left, ref y, ContentWidth, center);
+                DrawTextAutoHeight(g, "เลขผู้เสียภาษี: " + taxId, fontSmall, left, ref y, PaperWidth, center);
             }
 
+            if (!string.IsNullOrWhiteSpace(shopPhone))
+            {
+                DrawTextAutoHeight(g, "โทร: " + shopPhone, fontSmall, left, ref y, PaperWidth, center);
+            }
+
+            y += 3;
+            DrawLine(g, font, left, ref y);
             y += 3;
 
             g.DrawString($"เลขที่บิล: {bill.BillCode}", font, Brushes.Black, left, y);
@@ -280,7 +321,7 @@ namespace zeropos
             using Image logo = Image.FromFile(logoPath);
 
             int logoSize = 80;
-            int logoX = left + (ContentWidth - logoSize) / 2;
+            int logoX = left + (PaperWidth - logoSize) / 2;
 
             g.DrawImage(logo, logoX, y, logoSize, logoSize);
             y += logoSize + 5;
@@ -288,7 +329,7 @@ namespace zeropos
 
         private void DrawLine(Graphics g, Font font, int left, ref int y)
         {
-            float maxWidth = ContentWidth+20;
+            float maxWidth = ContentWidth + 20;
 
             string dash = "-";
             string line = "";
