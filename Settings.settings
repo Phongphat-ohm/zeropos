@@ -27,7 +27,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="shop_phone" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">0123456789</Value>
     </Setting>
     <Setting Name="bill_prefix" Type="System.String" Scope="User">
       <Value Profile="(Default)">ZR</Value>

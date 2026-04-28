@@ -121,7 +121,7 @@ namespace zeropos {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0123456789")]
         public string shop_phone {
             get {
                 return ((string)(this["shop_phone"]));

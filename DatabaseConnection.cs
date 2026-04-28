@@ -9,15 +9,19 @@ namespace zeropos
     {
         private static string GetConnectionString()
         {
-            Settings settings = new Settings();
-            string dbFile = settings.database_file;
+            //Settings settings = new Settings();
+            //string dbFile = settings.database_file;
 
-            if (string.IsNullOrWhiteSpace(dbFile))
-            {
-                throw new Exception("ยังไม่ได้ตั้งค่าไฟล์ฐานข้อมูล");
-            }
+            //if (string.IsNullOrWhiteSpace(dbFile))
+            //{
+            //    throw new Exception("ยังไม่ได้ตั้งค่าไฟล์ฐานข้อมูล");
+            //}
 
-            return $"Data Source={dbFile};";
+            string dbPath = Path.Combine(Application.StartupPath, "main_database.db");
+
+            string connectionString = $"Data Source={dbPath}";
+
+            return connectionString;
         }
 
         public static SqliteConnection GetConnection()

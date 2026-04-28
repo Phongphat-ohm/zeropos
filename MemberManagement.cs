@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace zeropos
@@ -141,7 +142,7 @@ namespace zeropos
 
                 string member_code = inp_member_code.Text.Trim();
                 string name = inp_name.Text.Trim();
-                string phone = inp_phone.Text.Trim();
+                string phone = Regex.Replace(inp_phone.Text, @"\D", "");
                 string address = inp_address.Text.Trim();
                 int status = Convert.ToInt32(combo_member_status.SelectedValue);
                 string create_at = inp_create_at.Text.Trim();
@@ -167,10 +168,10 @@ namespace zeropos
                         conn.Open();
 
                         string checkQuery = @"
-                    SELECT COUNT(*) 
-                    FROM members 
-                    WHERE member_code = @member_code
-                ";
+                            SELECT COUNT(*) 
+                            FROM members 
+                            WHERE member_code = @member_code
+                        ";
 
                         using (SqliteCommand checkCmd = new SqliteCommand(checkQuery, conn))
                         {
@@ -187,25 +188,25 @@ namespace zeropos
                         }
 
                         string insertQuery = @"
-                    INSERT INTO members 
-                    (
-                        member_code,
-                        name,
-                        phone,
-                        address,
-                        status,
-                        create_at
-                    )
-                    VALUES 
-                    (
-                        @member_code,
-                        @name,
-                        @phone,
-                        @address,
-                        @status,
-                        @create_at
-                    )
-                ";
+                            INSERT INTO members 
+                            (
+                                member_code,
+                                name,
+                                phone,
+                                address,
+                                status,
+                                create_at
+                            )
+                            VALUES 
+                            (
+                                @member_code,
+                                @name,
+                                @phone,
+                                @address,
+                                @status,
+                                @create_at
+                            )
+                        ";
 
                         using (SqliteCommand cmd = new SqliteCommand(insertQuery, conn))
                         {
@@ -223,7 +224,6 @@ namespace zeropos
                     MessageBox.Show("เพิ่มสมาชิกสำเร็จ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     ClearForm();
-                    // LoadMembers(); // ถ้ามีฟังก์ชันโหลด DataGridView
 
                     panel_form.Enabled = false;
                     state = "...";
@@ -252,7 +252,7 @@ namespace zeropos
                 int member_id = Convert.ToInt32(inp_id.Text);
                 string member_code = inp_member_code.Text.Trim();
                 string name = inp_name.Text.Trim();
-                string phone = inp_phone.Text.Trim();
+                string phone = Regex.Replace(inp_phone.Text, @"\D", "");
                 string address = inp_address.Text.Trim();
                 int status = Convert.ToInt32(combo_member_status.SelectedValue);
 
