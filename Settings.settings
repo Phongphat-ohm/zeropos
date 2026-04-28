@@ -35,5 +35,8 @@
     <Setting Name="logo_path" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\.PHONGPHAT\visual_studio\zeropos\src\logo.png</Value>
     </Setting>
+    <Setting Name="calculate_vat" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

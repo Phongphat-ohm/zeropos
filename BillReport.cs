@@ -111,6 +111,8 @@ namespace zeropos
                         o.net_total,
                         IFNULL(o.paid, 0) AS paid,
                         IFNULL(o.change, 0) AS change,
+                        IFNULL(o.vat, 0) AS vat,
+                        IFNULL(o.vat_rate, 0) AS vat_rate,
 
                         IFNULL(m.member_code, '') AS member_code,
                         IFNULL(m.name, '') AS member_name,
@@ -137,6 +139,8 @@ namespace zeropos
                             NetTotal = Convert.ToDecimal(reader["net_total"]),
                             Paid = Convert.ToDecimal(reader["paid"]),
                             Change = Convert.ToDecimal(reader["change"]),
+                            Vat = Convert.ToDecimal(reader["vat"]),
+                            VatRate = Convert.ToDecimal(reader["vat_rate"]),
 
                             MemberCode = reader["member_code"].ToString(),
                             MemberName = reader["member_name"].ToString(),
@@ -296,6 +300,9 @@ namespace zeropos
             DrawAmountRow(g, font, "ส่วนลด", bill.Discount, left, y, right);
             y += lineHeight;
 
+            DrawAmountRow(g, font, $"ภาษีมูลค่าเพิ่ม({bill.VatRate}%)", bill.Vat, left, y, right);
+            y += lineHeight;
+
             DrawAmountRow(g, fontTotal, "ราคาสุทธิ", bill.NetTotal, left, y, right);
             y += 25;
 
@@ -391,6 +398,8 @@ namespace zeropos
             public decimal NetTotal { get; set; }
             public decimal Paid { get; set; }
             public decimal Change { get; set; }
+            public decimal Vat { get; set; }
+            public decimal VatRate { get; set; }
 
             public string MemberCode { get; set; }
             public string MemberName { get; set; }

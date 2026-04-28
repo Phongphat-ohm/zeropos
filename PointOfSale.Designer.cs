@@ -116,6 +116,9 @@
             label40 = new Label();
             txt_bill_code = new TextBox();
             label39 = new Label();
+            label28 = new Label();
+            txt_vat = new Label();
+            label34 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -749,6 +752,9 @@
             // 
             panel7.BackColor = SystemColors.ControlLightLight;
             panel7.BorderStyle = BorderStyle.Fixed3D;
+            panel7.Controls.Add(label28);
+            panel7.Controls.Add(txt_vat);
+            panel7.Controls.Add(label34);
             panel7.Controls.Add(groupBox1);
             panel7.Controls.Add(btn_cancel_bill);
             panel7.Controls.Add(btn_pay);
@@ -778,7 +784,7 @@
             groupBox1.Controls.Add(txt_change);
             groupBox1.Location = new Point(852, 211);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(389, 116);
+            groupBox1.Size = new Size(389, 136);
             groupBox1.TabIndex = 26;
             groupBox1.TabStop = false;
             groupBox1.Text = "เงินทอน";
@@ -791,7 +797,7 @@
             txt_change.ForeColor = Color.Green;
             txt_change.Location = new Point(6, 35);
             txt_change.Name = "txt_change";
-            txt_change.Size = new Size(377, 70);
+            txt_change.Size = new Size(377, 94);
             txt_change.TabIndex = 0;
             txt_change.Text = "0.00";
             txt_change.TextAlign = ContentAlignment.MiddleCenter;
@@ -825,7 +831,7 @@
             // label37
             // 
             label37.AutoSize = true;
-            label37.Location = new Point(743, 285);
+            label37.Location = new Point(734, 315);
             label37.Name = "label37";
             label37.Size = new Size(43, 25);
             label37.TabIndex = 23;
@@ -834,18 +840,18 @@
             // inp_receive_cash
             // 
             inp_receive_cash.BackColor = SystemColors.ControlLight;
-            inp_receive_cash.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            inp_receive_cash.Location = new Point(423, 253);
+            inp_receive_cash.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            inp_receive_cash.Location = new Point(423, 290);
             inp_receive_cash.Name = "inp_receive_cash";
             inp_receive_cash.RightToLeft = RightToLeft.Yes;
-            inp_receive_cash.Size = new Size(305, 57);
+            inp_receive_cash.Size = new Size(305, 50);
             inp_receive_cash.TabIndex = 0;
             inp_receive_cash.KeyDown += inp_receive_cash_KeyDown;
             // 
             // label36
             // 
             label36.AutoSize = true;
-            label36.Location = new Point(52, 285);
+            label36.Location = new Point(52, 315);
             label36.Name = "label36";
             label36.Size = new Size(83, 25);
             label36.TabIndex = 15;
@@ -854,7 +860,7 @@
             // label33
             // 
             label33.AutoSize = true;
-            label33.Location = new Point(734, 218);
+            label33.Location = new Point(734, 256);
             label33.Name = "label33";
             label33.Size = new Size(43, 25);
             label33.TabIndex = 14;
@@ -864,11 +870,11 @@
             // 
             txt_bill_net_total.BackColor = SystemColors.ControlLight;
             txt_bill_net_total.BorderStyle = BorderStyle.Fixed3D;
-            txt_bill_net_total.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txt_bill_net_total.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txt_bill_net_total.ForeColor = Color.FromArgb(0, 192, 0);
-            txt_bill_net_total.Location = new Point(423, 186);
+            txt_bill_net_total.Location = new Point(423, 233);
             txt_bill_net_total.Name = "txt_bill_net_total";
-            txt_bill_net_total.Size = new Size(305, 57);
+            txt_bill_net_total.Size = new Size(305, 48);
             txt_bill_net_total.TabIndex = 13;
             txt_bill_net_total.Text = "0.00";
             txt_bill_net_total.TextAlign = ContentAlignment.MiddleRight;
@@ -876,7 +882,7 @@
             // label35
             // 
             label35.AutoSize = true;
-            label35.Location = new Point(52, 218);
+            label35.Location = new Point(52, 256);
             label35.Name = "label35";
             label35.Size = new Size(84, 25);
             label35.TabIndex = 12;
@@ -1018,11 +1024,41 @@
             label39.TabIndex = 0;
             label39.Text = "รายละเอียดบิลล์";
             // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Location = new Point(734, 193);
+            label28.Name = "label28";
+            label28.Size = new Size(43, 25);
+            label28.TabIndex = 29;
+            label28.Text = "บาท";
+            // 
+            // txt_vat
+            // 
+            txt_vat.BackColor = SystemColors.ControlLight;
+            txt_vat.BorderStyle = BorderStyle.Fixed3D;
+            txt_vat.ForeColor = Color.Red;
+            txt_vat.Location = new Point(423, 187);
+            txt_vat.Name = "txt_vat";
+            txt_vat.Size = new Size(305, 37);
+            txt_vat.TabIndex = 28;
+            txt_vat.Text = "0.00";
+            txt_vat.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.Location = new Point(52, 193);
+            label34.Name = "label34";
+            label34.Size = new Size(117, 25);
+            label34.TabIndex = 27;
+            label34.Text = "ภาษีมูลค่าเพิ่ม:";
+            // 
             // PointOfSale
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1920, 1061);
+            ClientSize = new Size(1920, 1079);
             Controls.Add(panel8);
             Controls.Add(panel7);
             Controls.Add(panel6);
@@ -1155,5 +1191,8 @@
         private DataGridViewTextBoxColumn pr_price;
         private DataGridViewTextBoxColumn pr_qty;
         private DataGridViewTextBoxColumn pr_total;
+        private Label label28;
+        private Label txt_vat;
+        private Label label34;
     }
 }

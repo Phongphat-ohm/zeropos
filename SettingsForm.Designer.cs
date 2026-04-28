@@ -51,6 +51,8 @@
             label10 = new Label();
             label11 = new Label();
             tab_shop_settings = new TabPage();
+            inp_vat_rate = new TextBox();
+            label13 = new Label();
             btn_shop_cancel = new Button();
             inp_shop_address = new TextBox();
             inp_shop_vat_id = new TextBox();
@@ -70,6 +72,7 @@
             label3 = new Label();
             label4 = new Label();
             tabControl1 = new TabControl();
+            check_calculate_vat = new CheckBox();
             panel1.SuspendLayout();
             tab_bill_priner_settings.SuspendLayout();
             panel2.SuspendLayout();
@@ -114,10 +117,10 @@
             // 
             tab_bill_priner_settings.BorderStyle = BorderStyle.Fixed3D;
             tab_bill_priner_settings.Controls.Add(panel2);
-            tab_bill_priner_settings.Location = new Point(4, 34);
+            tab_bill_priner_settings.Location = new Point(4, 24);
             tab_bill_priner_settings.Name = "tab_bill_priner_settings";
             tab_bill_priner_settings.Padding = new Padding(3);
-            tab_bill_priner_settings.Size = new Size(1872, 672);
+            tab_bill_priner_settings.Size = new Size(1872, 682);
             tab_bill_priner_settings.TabIndex = 1;
             tab_bill_priner_settings.Text = "ใบเสร็จ/เครื่องพิมพ์";
             tab_bill_priner_settings.UseVisualStyleBackColor = true;
@@ -306,6 +309,9 @@
             // tab_shop_settings
             // 
             tab_shop_settings.BorderStyle = BorderStyle.Fixed3D;
+            tab_shop_settings.Controls.Add(check_calculate_vat);
+            tab_shop_settings.Controls.Add(inp_vat_rate);
+            tab_shop_settings.Controls.Add(label13);
             tab_shop_settings.Controls.Add(btn_shop_cancel);
             tab_shop_settings.Controls.Add(inp_shop_address);
             tab_shop_settings.Controls.Add(inp_shop_vat_id);
@@ -331,6 +337,22 @@
             tab_shop_settings.TabIndex = 0;
             tab_shop_settings.Text = "ข้อมูลร้านค้า";
             tab_shop_settings.UseVisualStyleBackColor = true;
+            // 
+            // inp_vat_rate
+            // 
+            inp_vat_rate.Location = new Point(709, 479);
+            inp_vat_rate.Name = "inp_vat_rate";
+            inp_vat_rate.Size = new Size(686, 33);
+            inp_vat_rate.TabIndex = 19;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(544, 482);
+            label13.Name = "label13";
+            label13.Size = new Size(71, 25);
+            label13.TabIndex = 18;
+            label13.Text = "ภาษี(%)";
             // 
             // btn_shop_cancel
             // 
@@ -513,6 +535,17 @@
             tabControl1.Size = new Size(1880, 710);
             tabControl1.TabIndex = 0;
             // 
+            // check_calculate_vat
+            // 
+            check_calculate_vat.AutoSize = true;
+            check_calculate_vat.Location = new Point(1275, 518);
+            check_calculate_vat.Name = "check_calculate_vat";
+            check_calculate_vat.RightToLeft = RightToLeft.Yes;
+            check_calculate_vat.Size = new Size(119, 29);
+            check_calculate_vat.TabIndex = 20;
+            check_calculate_vat.Text = "คำณวนภาษี";
+            check_calculate_vat.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
@@ -582,5 +615,8 @@
         private Label label3;
         private Label label4;
         private TabControl tabControl1;
+        private TextBox inp_vat_rate;
+        private Label label13;
+        private CheckBox check_calculate_vat;
     }
 }

@@ -154,5 +154,17 @@ namespace zeropos {
                 this["logo_path"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool calculate_vat {
+            get {
+                return ((bool)(this["calculate_vat"]));
+            }
+            set {
+                this["calculate_vat"] = value;
+            }
+        }
     }
 }

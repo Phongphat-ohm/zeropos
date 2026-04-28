@@ -31,6 +31,9 @@ namespace zeropos
             inp_shop_phone.Text = settings.shop_phone;
             inp_shop_address.Text = settings.shop_address;
             inp_shop_vat_id.Text = settings.tax_id;
+            inp_vat_rate.Text= settings.vat.ToString();
+            check_calculate_vat.Checked = settings.calculate_vat;
+
 
             //Load Bill Settings
             inp_bill_prefix.Text = settings.bill_prefix;
@@ -114,6 +117,8 @@ namespace zeropos
             settings.shop_address = inp_shop_address.Text.Trim();
             settings.shop_phone = inp_shop_phone.Text.Trim();
             settings.tax_id = inp_shop_vat_id.Text.Trim();
+            settings.vat = float.Parse(inp_vat_rate.Text);
+            settings.calculate_vat = check_calculate_vat.Checked;
 
             settings.Save();
 

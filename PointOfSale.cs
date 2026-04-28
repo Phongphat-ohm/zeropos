@@ -19,6 +19,8 @@ namespace zeropos
         private decimal _discount = 0;
         private decimal _net_total = 0;
         private int member_id = 0;
+        private decimal _vat = 0;
+
         private int item_count
         {
             get { return _item_count; }
@@ -56,6 +58,15 @@ namespace zeropos
             }
         }
 
+        private decimal vat
+        {
+            get { return _vat; }
+            set
+            {
+                _vat = value;
+                txt_vat.Text = _vat.ToString("F2");
+            }
+        }
         public PointOfSale()
         {
             InitializeComponent();
@@ -223,8 +234,9 @@ namespace zeropos
 
             // Set Bill report
             item_count += Convert.ToInt32(inp_qty.Text);
-            bill_total = bill_total + total_calculate;
-            net_total = bill_total - discount;
+            bill_total += total_calculate;
+
+            CalculateBillSummary();
 
             inp_barcode.Clear();
             inp_qty.Text = "1";
@@ -278,7 +290,8 @@ namespace zeropos
                     // Set Bill report
                     item_count -= product_qty;
                     bill_total -= product_total;
-                    net_total = bill_total - discount;
+
+                    CalculateBillSummary();
 
                 }
             }
@@ -435,7 +448,9 @@ namespace zeropos
                                 user_id,
                                 order_date,
                                 paid,
-                                change
+                                change,
+                                vat,
+                                vat_rate
                             )
                             VALUES
                             (
@@ -447,7 +462,9 @@ namespace zeropos
                                 @user_id,
                                 @created_at,
                                 @paid,
-                                @change
+                                @change,
+                                @vat,
+                                @vat_rate
                             )
                         ";
 
@@ -465,6 +482,8 @@ namespace zeropos
                             cmd.Parameters.AddWithValue("@created_at", created_at);
                             cmd.Parameters.AddWithValue("@paid", receive_cash);
                             cmd.Parameters.AddWithValue("@change", change);
+                            cmd.Parameters.AddWithValue("@vat", vat);
+                            cmd.Parameters.AddWithValue("@vat_rate", new Settings().vat);
                             cmd.ExecuteNonQuery();
                         }
 
@@ -700,6 +719,7 @@ namespace zeropos
             bill_total = 0;
             discount = 0;
             net_total = 0;
+            vat = 0;
 
             txt_change.Text = "0.00";
 
@@ -862,7 +882,8 @@ namespace zeropos
                     // Set Bill report
                     item_count -= product_qty;
                     bill_total -= product_total;
-                    net_total = bill_total - discount;
+
+                    CalculateBillSummary();
 
                 }
             }
@@ -881,6 +902,32 @@ namespace zeropos
             {
                 ClearBill();
             }
+        }
+
+        private void CalculateBillSummary()
+        {
+            decimal vat_rate = 0;
+            decimal afterDiscount = bill_total - discount;
+
+            Settings settings = new Settings();
+
+            if (settings.calculate_vat)
+            {
+                vat_rate = Convert.ToDecimal(settings.vat);
+            }
+
+            if (afterDiscount < 0)
+                afterDiscount = 0;
+
+            vat = afterDiscount * (vat_rate/100);
+            net_total = afterDiscount + vat;
+
+            // แสดงผลบนหน้าจอ
+            txt_bill_total.Text = bill_total.ToString("F2");
+            txt_bill_discount.Text = discount.ToString("F2");
+            txt_vat.Text = vat.ToString("F2");
+            txt_bill_net_total.Text = net_total.ToString("F2");
+            txt_bill_pr_count.Text = item_count.ToString();
         }
     }
 }
