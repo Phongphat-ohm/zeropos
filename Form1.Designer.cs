@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             statusStrip1 = new StatusStrip();
+            sta_user = new ToolStripStatusLabel();
+            toolStripStatusLabel2 = new ToolStripStatusLabel();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             sta_db_connection = new ToolStripStatusLabel();
             sta_db_file = new ToolStripStatusLabel();
@@ -54,6 +56,7 @@
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             logoutToolStripMenuItem = new ToolStripMenuItem();
+            ออกจากระบบToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -62,12 +65,28 @@
             // statusStrip1
             // 
             statusStrip1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, sta_db_connection, sta_db_file });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { sta_user, toolStripStatusLabel2, toolStripStatusLabel1, sta_db_connection, sta_db_file });
             statusStrip1.Location = new Point(0, 983);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(1920, 26);
             statusStrip1.TabIndex = 0;
             statusStrip1.Text = "statusStrip1";
+            // 
+            // sta_user
+            // 
+            sta_user.BackColor = Color.Transparent;
+            sta_user.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            sta_user.ForeColor = Color.Green;
+            sta_user.Name = "sta_user";
+            sta_user.Size = new Size(17, 21);
+            sta_user.Text = "...";
+            // 
+            // toolStripStatusLabel2
+            // 
+            toolStripStatusLabel2.BackColor = Color.Transparent;
+            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            toolStripStatusLabel2.Size = new Size(14, 21);
+            toolStripStatusLabel2.Text = "|";
             // 
             // toolStripStatusLabel1
             // 
@@ -196,7 +215,7 @@
             // 
             จดการผใชToolStripMenuItem.Image = Properties.Resources.user;
             จดการผใชToolStripMenuItem.Name = "จดการผใชToolStripMenuItem";
-            จดการผใชToolStripMenuItem.Size = new Size(180, 22);
+            จดการผใชToolStripMenuItem.Size = new Size(156, 22);
             จดการผใชToolStripMenuItem.Text = "จัดการผู้ใช้";
             จดการผใชToolStripMenuItem.Click += จดการผใชToolStripMenuItem_Click;
             // 
@@ -204,7 +223,7 @@
             // 
             จดการสมาชกToolStripMenuItem.Image = Properties.Resources.star;
             จดการสมาชกToolStripMenuItem.Name = "จดการสมาชกToolStripMenuItem";
-            จดการสมาชกToolStripMenuItem.Size = new Size(180, 22);
+            จดการสมาชกToolStripMenuItem.Size = new Size(156, 22);
             จดการสมาชกToolStripMenuItem.Text = "จัดการสมาชิก";
             จดการสมาชกToolStripMenuItem.Click += จดการสมาชกToolStripMenuItem_Click;
             // 
@@ -260,7 +279,7 @@
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { logoutToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ออกจากระบบToolStripMenuItem, logoutToolStripMenuItem });
             fileToolStripMenuItem.Image = Properties.Resources.folder;
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new Size(53, 20);
@@ -270,9 +289,17 @@
             // 
             logoutToolStripMenuItem.Image = Properties.Resources.logout;
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(92, 22);
+            logoutToolStripMenuItem.Size = new Size(180, 22);
             logoutToolStripMenuItem.Text = "Exit";
             logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
+            // 
+            // ออกจากระบบToolStripMenuItem
+            // 
+            ออกจากระบบToolStripMenuItem.Image = Properties.Resources.logout;
+            ออกจากระบบToolStripMenuItem.Name = "ออกจากระบบToolStripMenuItem";
+            ออกจากระบบToolStripMenuItem.Size = new Size(180, 22);
+            ออกจากระบบToolStripMenuItem.Text = "ออกจากระบบ";
+            ออกจากระบบToolStripMenuItem.Click += ออกจากระบบToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -332,5 +359,8 @@
         private ToolStripButton toolStripButton3;
         private ToolStripSeparator toolStripSeparator4;
         private ToolStripStatusLabel sta_db_file;
+        private ToolStripStatusLabel sta_user;
+        private ToolStripStatusLabel toolStripStatusLabel2;
+        private ToolStripMenuItem ออกจากระบบToolStripMenuItem;
     }
 }

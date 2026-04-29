@@ -11,6 +11,7 @@ namespace zeropos
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            LoadUser();
             DatabaseConnection.ConnectionStatus(sta_db_connection);
 
             // ดึง path จาก connection string
@@ -46,6 +47,66 @@ namespace zeropos
 
             OpenFormInPanel(new Home());
             txt_status_label.Text = "หน้าหลัก";
+
+        }
+
+        private void LoadUser()
+        {
+            int user_id = UserSession.UserId;
+
+            if (user_id <= 0)
+            {
+                MessageBox.Show("ยังไม่ได้เข้าสู่ระบบ", "แจ้งเตือน",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (SqliteConnection conn = DatabaseConnection.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"
+                    SELECT id, name, username, role, status
+                    FROM users
+                    WHERE id = @id
+                    LIMIT 1
+                ";
+
+                using (SqliteCommand cmd = new SqliteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", user_id);
+
+                    using (SqliteDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (!reader.Read())
+                        {
+                            MessageBox.Show("ไม่พบข้อมูลผู้ใช้", "แจ้งเตือน",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
+                        string name = reader["name"].ToString();
+                        string username = reader["username"].ToString();
+                        string role = reader["role"].ToString();
+                        int status = Convert.ToInt32(reader["status"]);
+
+                        if (role != "admin")
+                        {
+                            toolStripButton3.Visible = false;
+                            จดการผใชToolStripMenuItem.Visible = false;
+                            toolStripSeparator4.Visible = false;
+                        }
+                        else
+                        {
+                            toolStripButton3.Visible = true;
+                            จดการผใชToolStripMenuItem.Visible = true;
+                            toolStripSeparator4.Visible = true;
+                        }
+
+                        sta_user.Text = name;
+                    }
+                }
+            }
         }
 
         private void OpenFormInPanel(Form childForm)
@@ -150,6 +211,39 @@ namespace zeropos
         {
             OpenFormInPanel(new UserManagement());
             txt_status_label.Text = "จัดการผู้ใช้";
+        }
+
+        private void ออกจากระบบToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var confirm = MessageBox.Show(
+                "ต้องการออกจากระบบใช่หรือไม่?",
+                "ยืนยัน",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirm != DialogResult.Yes) return;
+
+            // 🔓 เคลียร์ session
+            UserSession.Logout();
+
+            // 🔁 เปิดหน้า login ใหม่
+            this.Hide();
+
+            using (LoginForm login = new LoginForm())
+            {
+                if (login.ShowDialog() == DialogResult.OK)
+                {
+                    // login ใหม่สำเร็จ → โหลดข้อมูล user ใหม่
+                    this.Show();
+                    LoadUser(); // ถ้ามี function นี้
+                }
+                else
+                {
+                    // ❌ ปิดโปรแกรมถ้าไม่ login
+                    Application.Exit();
+                }
+            }
         }
     }
 }
