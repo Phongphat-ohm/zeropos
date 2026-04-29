@@ -340,6 +340,10 @@ namespace zeropos
         private void btn_search_Click(object sender, EventArgs e)
         {
             string search_text = inp_search.Text.Trim();
+
+            if (combo_status.SelectedValue == null)
+                return;
+
             int status_filter = Convert.ToInt32(combo_status.SelectedValue);
 
             using (SqliteConnection conn = DatabaseConnection.GetConnection())
@@ -347,60 +351,58 @@ namespace zeropos
                 conn.Open();
 
                 string query = @"
-                    SELECT 
-                        id AS 'ID',
-                        member_code AS 'รหัสสมาชิก',
-                        name AS 'ชื่อ',
-                        phone AS 'เบอร์โทร',
-                        address AS 'ที่อยู่',
-                        CASE 
-                            WHEN status = 1 THEN 'พร้อมใช้งาน'
-                            ELSE 'ปิดใช้งาน'
-                        END AS 'สถานะ',
-                        create_at AS 'วันที่สมัคร'
-                    FROM members
-                    WHERE 1=1
-                ";
+            SELECT 
+                id AS 'ID',
+                member_code AS 'รหัสสมาชิก',
+                name AS 'ชื่อ',
+                phone AS 'เบอร์โทร',
+                address AS 'ที่อยู่',
+                CASE 
+                    WHEN status = 1 THEN 'พร้อมใช้งาน'
+                    ELSE 'ปิดใช้งาน'
+                END AS 'สถานะ',
+                create_at AS 'วันที่สมัคร'
+            FROM members
+            WHERE 1=1
+        ";
 
-                // 🔍 ค้นหา text
                 if (!string.IsNullOrWhiteSpace(search_text))
                 {
                     query += @"
-                        AND (
-                            member_code LIKE @search OR
-                            name LIKE @search OR
-                            phone LIKE @search
-                        )
-                    ";
+                AND (
+                    member_code LIKE @search OR
+                    name LIKE @search OR
+                    phone LIKE @search
+                )
+            ";
                 }
 
-                // 🎯 filter สถานะ
-                if (status_filter != -1) // -1 = ทั้งหมด
+                if (status_filter != -1)
                 {
-                    query += " AND status = @status ";
+                    query += " AND IFNULL(status, 1) = @status ";
                 }
+
+                query += " ORDER BY id DESC ";
 
                 using (SqliteCommand cmd = new SqliteCommand(query, conn))
                 {
                     if (!string.IsNullOrWhiteSpace(search_text))
-                    {
                         cmd.Parameters.AddWithValue("@search", "%" + search_text + "%");
-                    }
 
                     if (status_filter != -1)
-                    {
                         cmd.Parameters.AddWithValue("@status", status_filter);
-                    }
 
                     using (SqliteDataReader reader = cmd.ExecuteReader())
                     {
-                        DataTable dt = new DataTable();
-                        dt.Load(reader);
+                        DataTable data = new DataTable();
+                        data.Load(reader);
 
-                        tbl_member.DataSource = dt;
+                        tbl_member.Columns.Clear();
+                        tbl_member.AutoGenerateColumns = true;
+                        tbl_member.DataSource = data;
                         tbl_member.AutoResizeColumns();
 
-                        txt_found_count.Text = "ค้นพบ " + dt.Rows.Count.ToString() + " คน";
+                        txt_found_count.Text = $"ค้นพบ {data.Rows.Count} คน";
                     }
                 }
             }

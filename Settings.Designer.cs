@@ -25,7 +25,7 @@ namespace zeropos {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:/.PHONGPHAT/visual_studio/zeropos/src/database/main_database.db")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string database_file {
             get {
                 return ((string)(this["database_file"]));
@@ -49,7 +49,7 @@ namespace zeropos {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("11/13 บ้านหนองงิ้ว นางรอง นางรอง บุรีรัมย์ 31110")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string shop_address {
             get {
                 return ((string)(this["shop_address"]));
@@ -61,7 +61,7 @@ namespace zeropos {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1234567891234")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string tax_id {
             get {
                 return ((string)(this["tax_id"]));
@@ -85,7 +85,7 @@ namespace zeropos {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("POS58")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string printer_name {
             get {
                 return ((string)(this["printer_name"]));
@@ -97,7 +97,7 @@ namespace zeropos {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool auto_bill_print {
             get {
                 return ((bool)(this["auto_bill_print"]));
@@ -145,7 +145,7 @@ namespace zeropos {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\.PHONGPHAT\\visual_studio\\zeropos\\src\\logo.png")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string logo_path {
             get {
                 return ((string)(this["logo_path"]));

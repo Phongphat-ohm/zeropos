@@ -51,6 +51,7 @@
             label10 = new Label();
             label11 = new Label();
             tab_shop_settings = new TabPage();
+            check_calculate_vat = new CheckBox();
             inp_vat_rate = new TextBox();
             label13 = new Label();
             btn_shop_cancel = new Button();
@@ -72,7 +73,6 @@
             label3 = new Label();
             label4 = new Label();
             tabControl1 = new TabControl();
-            check_calculate_vat = new CheckBox();
             panel1.SuspendLayout();
             tab_bill_priner_settings.SuspendLayout();
             panel2.SuspendLayout();
@@ -338,6 +338,17 @@
             tab_shop_settings.Text = "ข้อมูลร้านค้า";
             tab_shop_settings.UseVisualStyleBackColor = true;
             // 
+            // check_calculate_vat
+            // 
+            check_calculate_vat.AutoSize = true;
+            check_calculate_vat.Location = new Point(1275, 518);
+            check_calculate_vat.Name = "check_calculate_vat";
+            check_calculate_vat.RightToLeft = RightToLeft.Yes;
+            check_calculate_vat.Size = new Size(119, 29);
+            check_calculate_vat.TabIndex = 20;
+            check_calculate_vat.Text = "คำณวนภาษี";
+            check_calculate_vat.UseVisualStyleBackColor = true;
+            // 
             // inp_vat_rate
             // 
             inp_vat_rate.Location = new Point(709, 479);
@@ -534,17 +545,6 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(1880, 710);
             tabControl1.TabIndex = 0;
-            // 
-            // check_calculate_vat
-            // 
-            check_calculate_vat.AutoSize = true;
-            check_calculate_vat.Location = new Point(1275, 518);
-            check_calculate_vat.Name = "check_calculate_vat";
-            check_calculate_vat.RightToLeft = RightToLeft.Yes;
-            check_calculate_vat.Size = new Size(119, 29);
-            check_calculate_vat.TabIndex = 20;
-            check_calculate_vat.Text = "คำณวนภาษี";
-            check_calculate_vat.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 

@@ -13,6 +13,37 @@ namespace zeropos
         {
             DatabaseConnection.ConnectionStatus(sta_db_connection);
 
+            // ดึง path จาก connection string
+            string dbPath = DatabaseConnection.GetConnectionString().Split('=')[1];
+
+            if (File.Exists(dbPath))
+            {
+                FileInfo fileInfo = new FileInfo(dbPath);
+
+                long fileSizeBytes = fileInfo.Length;
+
+                // แปลงเป็น KB / MB
+                string fileSizeText;
+                if (fileSizeBytes >= 1024 * 1024)
+                {
+                    fileSizeText = $"{fileSizeBytes / (1024.0 * 1024.0):0.00} MB";
+                }
+                else if (fileSizeBytes >= 1024)
+                {
+                    fileSizeText = $"{fileSizeBytes / 1024.0:0.00} KB";
+                }
+                else
+                {
+                    fileSizeText = $"{fileSizeBytes} Bytes";
+                }
+
+                sta_db_file.Text = $"{dbPath} ({fileSizeText})";
+            }
+            else
+            {
+                sta_db_file.Text = $"{dbPath} (ไม่พบไฟล์)";
+            }
+
             OpenFormInPanel(new Home());
             txt_status_label.Text = "หน้าหลัก";
         }
@@ -79,6 +110,46 @@ namespace zeropos
         {
             OpenFormInPanel(new SettingsForm());
             txt_status_label.Text = "การตั้งค่า";
+        }
+
+        private void sta_db_file_Click(object sender, EventArgs e)
+        {
+            // ดึง path จาก connection string
+            string dbPath = DatabaseConnection.GetConnectionString().Split('=')[1];
+
+            if (File.Exists(dbPath))
+            {
+                FileInfo fileInfo = new FileInfo(dbPath);
+
+                long fileSizeBytes = fileInfo.Length;
+
+                // แปลงเป็น KB / MB
+                string fileSizeText;
+                if (fileSizeBytes >= 1024 * 1024)
+                {
+                    fileSizeText = $"{fileSizeBytes / (1024.0 * 1024.0):0.00} MB";
+                }
+                else if (fileSizeBytes >= 1024)
+                {
+                    fileSizeText = $"{fileSizeBytes / 1024.0:0.00} KB";
+                }
+                else
+                {
+                    fileSizeText = $"{fileSizeBytes} Bytes";
+                }
+
+                sta_db_file.Text = $"{dbPath} ({fileSizeText})";
+            }
+            else
+            {
+                sta_db_file.Text = $"{dbPath} (ไม่พบไฟล์)";
+            }
+        }
+
+        private void จดการผใชToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFormInPanel(new UserManagement());
+            txt_status_label.Text = "จัดการผู้ใช้";
         }
     }
 }

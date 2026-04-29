@@ -7,7 +7,7 @@ namespace zeropos
 {
     internal class DatabaseConnection
     {
-        private static string GetConnectionString()
+        public static string GetConnectionString()
         {
             //Settings settings = new Settings();
             //string dbFile = settings.database_file;

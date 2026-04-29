@@ -32,6 +32,7 @@
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             sta_db_connection = new ToolStripStatusLabel();
+            sta_db_file = new ToolStripStatusLabel();
             toolStripButton1 = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             toolStrip1 = new ToolStrip();
@@ -61,7 +62,7 @@
             // statusStrip1
             // 
             statusStrip1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, sta_db_connection });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, sta_db_connection, sta_db_file });
             statusStrip1.Location = new Point(0, 983);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(1920, 26);
@@ -83,6 +84,17 @@
             sta_db_connection.Name = "sta_db_connection";
             sta_db_connection.Size = new Size(98, 21);
             sta_db_connection.Text = "กำลังเชื่อมต่อ...";
+            // 
+            // sta_db_file
+            // 
+            sta_db_file.BackColor = Color.Transparent;
+            sta_db_file.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            sta_db_file.ForeColor = SystemColors.ControlDark;
+            sta_db_file.Name = "sta_db_file";
+            sta_db_file.Size = new Size(16, 21);
+            sta_db_file.Text = "...";
+            sta_db_file.TextAlign = ContentAlignment.MiddleLeft;
+            sta_db_file.Click += sta_db_file_Click;
             // 
             // toolStripButton1
             // 
@@ -184,14 +196,15 @@
             // 
             จดการผใชToolStripMenuItem.Image = Properties.Resources.user;
             จดการผใชToolStripMenuItem.Name = "จดการผใชToolStripMenuItem";
-            จดการผใชToolStripMenuItem.Size = new Size(156, 22);
+            จดการผใชToolStripMenuItem.Size = new Size(180, 22);
             จดการผใชToolStripMenuItem.Text = "จัดการผู้ใช้";
+            จดการผใชToolStripMenuItem.Click += จดการผใชToolStripMenuItem_Click;
             // 
             // จดการสมาชกToolStripMenuItem
             // 
             จดการสมาชกToolStripMenuItem.Image = Properties.Resources.star;
             จดการสมาชกToolStripMenuItem.Name = "จดการสมาชกToolStripMenuItem";
-            จดการสมาชกToolStripMenuItem.Size = new Size(156, 22);
+            จดการสมาชกToolStripMenuItem.Size = new Size(180, 22);
             จดการสมาชกToolStripMenuItem.Text = "จัดการสมาชิก";
             จดการสมาชกToolStripMenuItem.Click += จดการสมาชกToolStripMenuItem_Click;
             // 
@@ -318,5 +331,6 @@
         private ToolStripSeparator toolStripSeparator5;
         private ToolStripButton toolStripButton3;
         private ToolStripSeparator toolStripSeparator4;
+        private ToolStripStatusLabel sta_db_file;
     }
 }

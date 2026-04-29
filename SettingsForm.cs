@@ -31,7 +31,7 @@ namespace zeropos
             inp_shop_phone.Text = settings.shop_phone;
             inp_shop_address.Text = settings.shop_address;
             inp_shop_vat_id.Text = settings.tax_id;
-            inp_vat_rate.Text= settings.vat.ToString();
+            inp_vat_rate.Text = settings.vat.ToString();
             check_calculate_vat.Checked = settings.calculate_vat;
 
 
@@ -235,6 +235,7 @@ namespace zeropos
             try
             {
                 printDoc.Print();
+                MessageBox.Show("พิมพ์สำเร็จ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -249,11 +250,34 @@ namespace zeropos
 
         private void btn_bill_save_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show(
+                "ต้องการบันทึกการตั้งค่าใบเสร็จ/เครื่องพิมพ์ใช่ไหม?",
+                "ยืนยันการทำรายการ",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2
+            );
+
+            if (result != DialogResult.Yes)
+                return;
+
             settings.bill_prefix = inp_bill_prefix.Text;
             settings.bill_footer = inp_bill_footer_text.Text;
             settings.printer_name = combo_printer_name.Text;
             settings.auto_bill_print = check_auto_print_bill.Checked;
             settings.Save();
+
+            MessageBox.Show(
+                "บันทึกการตั้งค่าสำเร็จ",
+                "แจ้งเตือน",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

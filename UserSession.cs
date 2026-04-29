@@ -6,7 +6,7 @@ namespace zeropos
 {
     internal class UserSession
     {
-        public static int UserId { get; set; } = 1;
+        public static int UserId { get; set; }
         public static string Username { get; set; }
         public static string Name { get; set; }
         public static string Role { get; set; }

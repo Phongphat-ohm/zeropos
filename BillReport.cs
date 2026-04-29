@@ -245,7 +245,7 @@ namespace zeropos
             }
 
             y += 3;
-            DrawLine(g, font, left, ref y);
+            DrawEqual(g, font, left, ref y);
             y += 3;
 
             g.DrawString($"เลขที่บิล: {bill.BillCode}", font, Brushes.Black, left, y);
@@ -312,7 +312,7 @@ namespace zeropos
             DrawAmountRow(g, font, "เงินทอน", bill.Change, left, y, right);
             y += lineHeight + 5;
 
-            DrawLine(g, font, left, ref y);
+            DrawEqual(g, font, left, ref y);
 
             if (!string.IsNullOrWhiteSpace(footerText))
             {
@@ -339,6 +339,23 @@ namespace zeropos
             float maxWidth = ContentWidth + 20;
 
             string dash = "-";
+            string line = "";
+
+            // 🔥 ต่อ - ไปเรื่อย ๆ จนเต็มความกว้าง
+            while (g.MeasureString(line + dash, font).Width < maxWidth)
+            {
+                line += dash;
+            }
+
+            g.DrawString(line, font, Brushes.Black, left, y);
+            y += (int)g.MeasureString(line, font).Height;
+        }
+
+        private void DrawEqual(Graphics g, Font font, int left, ref int y)
+        {
+            float maxWidth = ContentWidth + 20;
+
+            string dash = "=";
             string line = "";
 
             // 🔥 ต่อ - ไปเรื่อย ๆ จนเต็มความกว้าง
